@@ -1,0 +1,6 @@
+[worldserver]
+#enables Bot buffs
+BetterBots.enabled = true
+
+#factor to buff stats
+BetterBots.difficulty = 2

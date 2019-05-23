@@ -68,9 +68,6 @@ public:
 
         QueryResult result = CharacterDatabase.PQuery("SELECT AccountId FROM premium WHERE active = 1 and AccountId = %u", player->GetSession()->GetAccountId());
 
-        if (!result)
-            return false;
-
         if (player->IsInCombat())
             return false;
 
@@ -147,7 +144,7 @@ public:
                 case 17: player->SetDisplayId(4527); break;     // Thrall                       'Orgrimmar Boss'
                 case 18: player->SetDisplayId(11657); break;    // Lady Sylvanas                'Undercity Boss'
                 case 19: player->SetDisplayId(4307); break;     // Cairne Bloodhoof             'Thunderbluff Boss'
-                case 20: player->SetDisplayId(17122); break;    // Lor´themar Theron            'Silvermoon City Boss'
+                case 20: player->SetDisplayId(17122); break;    // LorÂ´themar Theron            'Silvermoon City Boss'
                 case 21: player->SetDisplayId(3597); break;     // King Magni Bronzebeard       'Ironforge Boss'
                 case 22: player->SetDisplayId(5566); break;     // Highlord Bolvar Fordragon    'Stormwind Boss'
                 case 23: player->SetDisplayId(7006); break;     // High Tinker Mekkatorque      'Gnomer Boss'

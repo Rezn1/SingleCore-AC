@@ -13,142 +13,272 @@ map<uint8, vector<uint8> > RandomPlayerbotFactory::availableRaces;
 
 RandomPlayerbotFactory::RandomPlayerbotFactory(uint32 accountId) : accountId(accountId)
 {
-	availableRaces[CLASS_WARRIOR].push_back(RACE_HUMAN);
-	availableRaces[CLASS_WARRIOR].push_back(RACE_NIGHTELF);
-	availableRaces[CLASS_WARRIOR].push_back(RACE_GNOME);
-	availableRaces[CLASS_WARRIOR].push_back(RACE_DWARF);
-	availableRaces[CLASS_WARRIOR].push_back(RACE_ORC);
-	availableRaces[CLASS_WARRIOR].push_back(RACE_UNDEAD_PLAYER);
-	availableRaces[CLASS_WARRIOR].push_back(RACE_TAUREN);
-	availableRaces[CLASS_WARRIOR].push_back(RACE_TROLL);
-	availableRaces[CLASS_WARRIOR].push_back(RACE_DRAENEI);
-    if (sPlayerbotAIConfig.aracgen) //thesawolf - ARAC enabled
-    {
-        availableRaces[CLASS_WARRIOR].push_back(RACE_BLOODELF);
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_WARRIOR].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_GNOME);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_DWARF);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_DRAENEI);
+    }
+    else{
+        availableRaces[CLASS_WARRIOR].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_GNOME);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_DWARF);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_ORC);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_UNDEAD_PLAYER);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_TAUREN);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_TROLL);
+	    availableRaces[CLASS_WARRIOR].push_back(RACE_DRAENEI);
+        if (sPlayerbotAIConfig.aracgen) //thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_WARRIOR].push_back(RACE_BLOODELF);
+        }
+    }
+	
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_PALADIN].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_PALADIN].push_back(RACE_DWARF);
+	    availableRaces[CLASS_PALADIN].push_back(RACE_DRAENEI);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_PALADIN].push_back(RACE_NIGHTELF);
+            availableRaces[CLASS_PALADIN].push_back(RACE_GNOME);
+        }
+    }
+    else{
+        availableRaces[CLASS_PALADIN].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_PALADIN].push_back(RACE_DWARF);
+	    availableRaces[CLASS_PALADIN].push_back(RACE_DRAENEI);
+	    availableRaces[CLASS_PALADIN].push_back(RACE_BLOODELF);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_PALADIN].push_back(RACE_NIGHTELF);
+            availableRaces[CLASS_PALADIN].push_back(RACE_GNOME);
+            availableRaces[CLASS_PALADIN].push_back(RACE_ORC);
+            availableRaces[CLASS_PALADIN].push_back(RACE_UNDEAD_PLAYER);
+            availableRaces[CLASS_PALADIN].push_back(RACE_TAUREN);
+            availableRaces[CLASS_PALADIN].push_back(RACE_TROLL);
+        }
+    }
+	
+
+
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_ROGUE].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_ROGUE].push_back(RACE_DWARF);
+	    availableRaces[CLASS_ROGUE].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_ROGUE].push_back(RACE_GNOME);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_ROGUE].push_back(RACE_DRAENEI);
+        }
+    }
+    else{
+        availableRaces[CLASS_ROGUE].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_ROGUE].push_back(RACE_DWARF);
+	    availableRaces[CLASS_ROGUE].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_ROGUE].push_back(RACE_GNOME);
+	    availableRaces[CLASS_ROGUE].push_back(RACE_ORC);
+	    availableRaces[CLASS_ROGUE].push_back(RACE_TROLL);
+	    availableRaces[CLASS_ROGUE].push_back(RACE_BLOODELF);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_ROGUE].push_back(RACE_TAUREN);
+            availableRaces[CLASS_ROGUE].push_back(RACE_UNDEAD_PLAYER);
+            availableRaces[CLASS_ROGUE].push_back(RACE_DRAENEI);
+        }
+    }
+	
+
+
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_PRIEST].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_PRIEST].push_back(RACE_DWARF);
+	    availableRaces[CLASS_PRIEST].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_PRIEST].push_back(RACE_DRAENEI);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_PRIEST].push_back(RACE_GNOME);
+        }
+    }
+    else{
+        availableRaces[CLASS_PRIEST].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_PRIEST].push_back(RACE_DWARF);
+	    availableRaces[CLASS_PRIEST].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_PRIEST].push_back(RACE_DRAENEI);
+	    availableRaces[CLASS_PRIEST].push_back(RACE_TROLL);
+	    availableRaces[CLASS_PRIEST].push_back(RACE_UNDEAD_PLAYER);
+	    availableRaces[CLASS_PRIEST].push_back(RACE_BLOODELF);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_PRIEST].push_back(RACE_ORC);
+            availableRaces[CLASS_PRIEST].push_back(RACE_TAUREN);
+            availableRaces[CLASS_PRIEST].push_back(RACE_GNOME);
+        }
+    }
+	
+
+
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_MAGE].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_MAGE].push_back(RACE_GNOME);
+	    availableRaces[CLASS_MAGE].push_back(RACE_DRAENEI);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_MAGE].push_back(RACE_DWARF);
+            availableRaces[CLASS_MAGE].push_back(RACE_NIGHTELF);
+        }
+    }
+    else{
+        availableRaces[CLASS_MAGE].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_MAGE].push_back(RACE_GNOME);
+	    availableRaces[CLASS_MAGE].push_back(RACE_DRAENEI);
+	    availableRaces[CLASS_MAGE].push_back(RACE_UNDEAD_PLAYER);
+	    availableRaces[CLASS_MAGE].push_back(RACE_TROLL);
+	    availableRaces[CLASS_MAGE].push_back(RACE_BLOODELF);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_MAGE].push_back(RACE_TAUREN);
+            availableRaces[CLASS_MAGE].push_back(RACE_ORC);
+            availableRaces[CLASS_MAGE].push_back(RACE_DWARF);
+            availableRaces[CLASS_MAGE].push_back(RACE_NIGHTELF);
+        }
+    }
+	
+
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_WARLOCK].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_WARLOCK].push_back(RACE_GNOME);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_WARLOCK].push_back(RACE_DWARF);
+            availableRaces[CLASS_WARLOCK].push_back(RACE_DRAENEI);
+            availableRaces[CLASS_WARLOCK].push_back(RACE_NIGHTELF);
+        }
+    }
+    else{
+        availableRaces[CLASS_WARLOCK].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_WARLOCK].push_back(RACE_GNOME);
+	    availableRaces[CLASS_WARLOCK].push_back(RACE_UNDEAD_PLAYER);
+	    availableRaces[CLASS_WARLOCK].push_back(RACE_ORC);
+	    availableRaces[CLASS_WARLOCK].push_back(RACE_BLOODELF);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_WARLOCK].push_back(RACE_TAUREN);
+            availableRaces[CLASS_WARLOCK].push_back(RACE_DWARF);
+            availableRaces[CLASS_WARLOCK].push_back(RACE_DRAENEI);
+            availableRaces[CLASS_WARLOCK].push_back(RACE_TROLL);
+            availableRaces[CLASS_WARLOCK].push_back(RACE_NIGHTELF);
+        }
     }
 
-	availableRaces[CLASS_PALADIN].push_back(RACE_HUMAN);
-	availableRaces[CLASS_PALADIN].push_back(RACE_DWARF);
-	availableRaces[CLASS_PALADIN].push_back(RACE_DRAENEI);
-	availableRaces[CLASS_PALADIN].push_back(RACE_BLOODELF);
-    if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
-    {
-        availableRaces[CLASS_PALADIN].push_back(RACE_NIGHTELF);
-        availableRaces[CLASS_PALADIN].push_back(RACE_GNOME);
-        availableRaces[CLASS_PALADIN].push_back(RACE_ORC);
-        availableRaces[CLASS_PALADIN].push_back(RACE_UNDEAD_PLAYER);
-        availableRaces[CLASS_PALADIN].push_back(RACE_TAUREN);
-        availableRaces[CLASS_PALADIN].push_back(RACE_TROLL);
+	
+
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_SHAMAN].push_back(RACE_DRAENEI);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_SHAMAN].push_back(RACE_HUMAN);
+            availableRaces[CLASS_SHAMAN].push_back(RACE_DWARF);
+            availableRaces[CLASS_SHAMAN].push_back(RACE_NIGHTELF);
+            availableRaces[CLASS_SHAMAN].push_back(RACE_GNOME);
+        }
+    }
+    else{
+        availableRaces[CLASS_SHAMAN].push_back(RACE_DRAENEI);
+	    availableRaces[CLASS_SHAMAN].push_back(RACE_ORC);
+	    availableRaces[CLASS_SHAMAN].push_back(RACE_TAUREN);
+	    availableRaces[CLASS_SHAMAN].push_back(RACE_TROLL);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_SHAMAN].push_back(RACE_HUMAN);
+            availableRaces[CLASS_SHAMAN].push_back(RACE_DWARF);
+            availableRaces[CLASS_SHAMAN].push_back(RACE_NIGHTELF);
+            availableRaces[CLASS_SHAMAN].push_back(RACE_UNDEAD_PLAYER);
+            availableRaces[CLASS_SHAMAN].push_back(RACE_BLOODELF);
+            availableRaces[CLASS_SHAMAN].push_back(RACE_GNOME);
+        }
     }
 
-	availableRaces[CLASS_ROGUE].push_back(RACE_HUMAN);
-	availableRaces[CLASS_ROGUE].push_back(RACE_DWARF);
-	availableRaces[CLASS_ROGUE].push_back(RACE_NIGHTELF);
-	availableRaces[CLASS_ROGUE].push_back(RACE_GNOME);
-	availableRaces[CLASS_ROGUE].push_back(RACE_ORC);
-	availableRaces[CLASS_ROGUE].push_back(RACE_TROLL);
-	availableRaces[CLASS_ROGUE].push_back(RACE_BLOODELF);
-    if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
-    {
-        availableRaces[CLASS_ROGUE].push_back(RACE_TAUREN);
-        availableRaces[CLASS_ROGUE].push_back(RACE_UNDEAD_PLAYER);
-        availableRaces[CLASS_ROGUE].push_back(RACE_DRAENEI);
+	
+
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_HUNTER].push_back(RACE_DWARF);
+	    availableRaces[CLASS_HUNTER].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_HUNTER].push_back(RACE_DRAENEI);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_HUNTER].push_back(RACE_HUMAN);
+            availableRaces[CLASS_HUNTER].push_back(RACE_GNOME);
+        }
+    }
+    else{
+        availableRaces[CLASS_HUNTER].push_back(RACE_DWARF);
+	    availableRaces[CLASS_HUNTER].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_HUNTER].push_back(RACE_DRAENEI);
+	    availableRaces[CLASS_HUNTER].push_back(RACE_ORC);
+	    availableRaces[CLASS_HUNTER].push_back(RACE_TAUREN);
+	    availableRaces[CLASS_HUNTER].push_back(RACE_TROLL);
+	    availableRaces[CLASS_HUNTER].push_back(RACE_BLOODELF);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_HUNTER].push_back(RACE_UNDEAD_PLAYER);
+            availableRaces[CLASS_HUNTER].push_back(RACE_HUMAN);
+            availableRaces[CLASS_HUNTER].push_back(RACE_GNOME);
+        }
     }
 
-	availableRaces[CLASS_PRIEST].push_back(RACE_HUMAN);
-	availableRaces[CLASS_PRIEST].push_back(RACE_DWARF);
-	availableRaces[CLASS_PRIEST].push_back(RACE_NIGHTELF);
-	availableRaces[CLASS_PRIEST].push_back(RACE_DRAENEI);
-	availableRaces[CLASS_PRIEST].push_back(RACE_TROLL);
-	availableRaces[CLASS_PRIEST].push_back(RACE_UNDEAD_PLAYER);
-	availableRaces[CLASS_PRIEST].push_back(RACE_BLOODELF);
-    if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
-    {
-        availableRaces[CLASS_PRIEST].push_back(RACE_ORC);
-        availableRaces[CLASS_PRIEST].push_back(RACE_TAUREN);
-        availableRaces[CLASS_PRIEST].push_back(RACE_GNOME);
+	
+
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_DRUID].push_back(RACE_NIGHTELF);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_DRUID].push_back(RACE_HUMAN);    
+            availableRaces[CLASS_DRUID].push_back(RACE_DRAENEI);
+            availableRaces[CLASS_DRUID].push_back(RACE_GNOME);
+            availableRaces[CLASS_DRUID].push_back(RACE_DWARF);
+        }
+    }
+    else{
+        availableRaces[CLASS_DRUID].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_DRUID].push_back(RACE_TAUREN);
+        if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
+        {
+            availableRaces[CLASS_DRUID].push_back(RACE_HUMAN);    
+            availableRaces[CLASS_DRUID].push_back(RACE_ORC);
+            availableRaces[CLASS_DRUID].push_back(RACE_UNDEAD_PLAYER);
+            availableRaces[CLASS_DRUID].push_back(RACE_TROLL);
+            availableRaces[CLASS_DRUID].push_back(RACE_BLOODELF);
+            availableRaces[CLASS_DRUID].push_back(RACE_DRAENEI);
+            availableRaces[CLASS_DRUID].push_back(RACE_GNOME);
+            availableRaces[CLASS_DRUID].push_back(RACE_DWARF);
+        }
     }
 
-	availableRaces[CLASS_MAGE].push_back(RACE_HUMAN);
-	availableRaces[CLASS_MAGE].push_back(RACE_GNOME);
-	availableRaces[CLASS_MAGE].push_back(RACE_DRAENEI);
-	availableRaces[CLASS_MAGE].push_back(RACE_UNDEAD_PLAYER);
-	availableRaces[CLASS_MAGE].push_back(RACE_TROLL);
-	availableRaces[CLASS_MAGE].push_back(RACE_BLOODELF);
-    if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
-    {
-        availableRaces[CLASS_MAGE].push_back(RACE_TAUREN);
-        availableRaces[CLASS_MAGE].push_back(RACE_ORC);
-        availableRaces[CLASS_MAGE].push_back(RACE_DWARF);
-        availableRaces[CLASS_MAGE].push_back(RACE_NIGHTELF);
-    }
+	
 
-	availableRaces[CLASS_WARLOCK].push_back(RACE_HUMAN);
-	availableRaces[CLASS_WARLOCK].push_back(RACE_GNOME);
-	availableRaces[CLASS_WARLOCK].push_back(RACE_UNDEAD_PLAYER);
-	availableRaces[CLASS_WARLOCK].push_back(RACE_ORC);
-	availableRaces[CLASS_WARLOCK].push_back(RACE_BLOODELF);
-    if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
-    {
-        availableRaces[CLASS_WARLOCK].push_back(RACE_TAUREN);
-        availableRaces[CLASS_WARLOCK].push_back(RACE_DWARF);
-        availableRaces[CLASS_WARLOCK].push_back(RACE_DRAENEI);
-        availableRaces[CLASS_WARLOCK].push_back(RACE_TROLL);
-        availableRaces[CLASS_WARLOCK].push_back(RACE_NIGHTELF);
+    if(sPlayerbotAIConfig.onlyAlli){
+        availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_DRAENEI);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_GNOME);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_DWARF);
     }
-
-	availableRaces[CLASS_SHAMAN].push_back(RACE_DRAENEI);
-	availableRaces[CLASS_SHAMAN].push_back(RACE_ORC);
-	availableRaces[CLASS_SHAMAN].push_back(RACE_TAUREN);
-	availableRaces[CLASS_SHAMAN].push_back(RACE_TROLL);
-    if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
-    {
-        availableRaces[CLASS_SHAMAN].push_back(RACE_HUMAN);
-        availableRaces[CLASS_SHAMAN].push_back(RACE_DWARF);
-        availableRaces[CLASS_SHAMAN].push_back(RACE_NIGHTELF);
-        availableRaces[CLASS_SHAMAN].push_back(RACE_UNDEAD_PLAYER);
-        availableRaces[CLASS_SHAMAN].push_back(RACE_BLOODELF);
-        availableRaces[CLASS_SHAMAN].push_back(RACE_GNOME);
+    else{
+        availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_NIGHTELF);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_TAUREN);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_HUMAN);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_ORC);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_UNDEAD_PLAYER);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_TROLL);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_BLOODELF);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_DRAENEI);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_GNOME);
+	    availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_DWARF);
     }
-
-	availableRaces[CLASS_HUNTER].push_back(RACE_DWARF);
-	availableRaces[CLASS_HUNTER].push_back(RACE_NIGHTELF);
-	availableRaces[CLASS_HUNTER].push_back(RACE_DRAENEI);
-	availableRaces[CLASS_HUNTER].push_back(RACE_ORC);
-	availableRaces[CLASS_HUNTER].push_back(RACE_TAUREN);
-	availableRaces[CLASS_HUNTER].push_back(RACE_TROLL);
-	availableRaces[CLASS_HUNTER].push_back(RACE_BLOODELF);
-    if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
-    {
-        availableRaces[CLASS_HUNTER].push_back(RACE_UNDEAD_PLAYER);
-        availableRaces[CLASS_HUNTER].push_back(RACE_HUMAN);
-        availableRaces[CLASS_HUNTER].push_back(RACE_GNOME);
-    }
-
-	availableRaces[CLASS_DRUID].push_back(RACE_NIGHTELF);
-	availableRaces[CLASS_DRUID].push_back(RACE_TAUREN);
-    if (sPlayerbotAIConfig.aracgen) // thesawolf - ARAC enabled
-    {
-        availableRaces[CLASS_DRUID].push_back(RACE_HUMAN);    
-        availableRaces[CLASS_DRUID].push_back(RACE_ORC);
-        availableRaces[CLASS_DRUID].push_back(RACE_UNDEAD_PLAYER);
-        availableRaces[CLASS_DRUID].push_back(RACE_TROLL);
-        availableRaces[CLASS_DRUID].push_back(RACE_BLOODELF);
-        availableRaces[CLASS_DRUID].push_back(RACE_DRAENEI);
-        availableRaces[CLASS_DRUID].push_back(RACE_GNOME);
-        availableRaces[CLASS_DRUID].push_back(RACE_DWARF);
-    }
-
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_NIGHTELF);
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_TAUREN);
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_HUMAN);
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_ORC);
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_UNDEAD_PLAYER);
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_TROLL);
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_BLOODELF);
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_DRAENEI);
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_GNOME);
-	availableRaces[CLASS_DEATH_KNIGHT].push_back(RACE_DWARF);
+	
 
 
 }
