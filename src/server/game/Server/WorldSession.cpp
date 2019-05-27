@@ -35,9 +35,6 @@
 #include "WardenMac.h"
 #include "SavingSystem.h"
 #include "AccountMgr.h"
-#ifdef ELUNA
-#include "LuaEngine.h"
-#endif
 
 // Playerbot mod:
 #include "../../modules/bot/playerbot/playerbot.h"
@@ -216,13 +213,6 @@ void WorldSession::SendPacket(WorldPacket const* packet)
     }
 #endif                                                      // !TRINITY_DEBUG
 
-    sScriptMgr->OnPacketSend(this, *packet);
-
-#ifdef ELUNA
-    if (!sEluna->OnPacketSend(this, *packet))
-        return;
-#endif
-
     if (m_Socket->SendPacket(*packet) == -1)
         m_Socket->CloseSocket();
 }
@@ -300,11 +290,6 @@ bool WorldSession::Update(uint32 diff, PacketFilter& updater)
                                     delete movementPacket;
                                     movementPacket = NULL;
                                 }
-                                sScriptMgr->OnPacketReceive(this, *packet);
-#ifdef ELUNA
-                                if (!sEluna->OnPacketReceive(this, *packet))
-                                    break;
-#endif
                                 (this->*opHandle.handler)(*packet);
                             }
 
@@ -321,23 +306,12 @@ bool WorldSession::Update(uint32 diff, PacketFilter& updater)
                                 delete movementPacket;
                                 movementPacket = NULL;
                             }
-                            sScriptMgr->OnPacketReceive(this, *packet);
-#ifdef ELUNA
-                            if (!sEluna->OnPacketReceive(this, *packet))
-                                break;
-#endif
                             (this->*opHandle.handler)(*packet);
                         }
                         break;
                     case STATUS_AUTHED:
                         if (m_inQueue) // prevent cheating
                             break;
-
-                        sScriptMgr->OnPacketReceive(this, *packet);
-#ifdef ELUNA
-                        if (!sEluna->OnPacketReceive(this, *packet))
-                            break;
-#endif
                         (this->*opHandle.handler)(*packet);
                         break;
                     case STATUS_NEVER:

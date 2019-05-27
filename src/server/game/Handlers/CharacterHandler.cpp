@@ -31,16 +31,13 @@
 #include "SocialMgr.h"
 #include "SpellAuras.h"
 #include "SpellAuraEffects.h"
-#include "GitRevision.h"
+#include "SystemConfig.h"
 #include "UpdateMask.h"
 #include "Util.h"
 #include "World.h"
 #include "WorldPacket.h"
 #include "WorldSession.h"
 #include "Transport.h"
-#ifdef ELUNA
-#include "LuaEngine.h"
-#endif
 
  // Playerbot mod:
 #include "../../modules/bot/playerbot/playerbot.h"
@@ -1009,7 +1006,7 @@ void WorldSession::HandlePlayerLoginFromDB(LoginQueryHolder* holder)
 
         // send server info
         if (sWorld->getIntConfig(CONFIG_ENABLE_SINFO_LOGIN) == 1)
-            chH.PSendSysMessage("%s", GitRevision::GetFullVersion());
+            chH.PSendSysMessage(_FULLVERSION);
 
 #if defined(ENABLE_EXTRAS) && defined(ENABLE_EXTRA_LOGS)
         sLog->outStaticDebug("WORLD: Sent server info");
@@ -1335,7 +1332,7 @@ void WorldSession::HandlePlayerLoginToCharInWorld(Player* pCurrChar)
 
         // send server info
         if (sWorld->getIntConfig(CONFIG_ENABLE_SINFO_LOGIN) == 1)
-            chH.PSendSysMessage("%s", GitRevision::GetFullVersion());
+            chH.PSendSysMessage(_FULLVERSION);
 
 #if defined(ENABLE_EXTRAS) && defined(ENABLE_EXTRA_LOGS)
         sLog->outStaticDebug("WORLD: Sent server info");

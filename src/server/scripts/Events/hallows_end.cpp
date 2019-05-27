@@ -9,7 +9,6 @@
 #include "LFGMgr.h"
 #include "PassiveAI.h"
 #include "Group.h"
-#include "CellImpl.h"
 
 ///////////////////////////////////////
 ////// ITEMS FIXES, BASIC STUFF

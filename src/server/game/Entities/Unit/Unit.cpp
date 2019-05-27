@@ -53,11 +53,6 @@
 #include "DynamicVisibility.h"
 #include "AccountMgr.h"
 
-#ifdef ELUNA
-#include "LuaEngine.h"
-#include "ElunaEventMgr.h"
-#endif
-
 #include <math.h>
 
 float baseMoveSpeed[MAX_MOVE_TYPE] =
@@ -340,9 +335,6 @@ Unit::~Unit()
 
 void Unit::Update(uint32 p_time)
 {
-#ifdef ELUNA
-    elunaEvents->Update(p_time);
-#endif
     // WARNING! Order of execution here is important, do not change.
     // Spells must be processed with event system BEFORE they go to _UpdateSpells.
     // Or else we may have some SPELL_STATE_FINISHED spells stalled in pointers, that is bad.
@@ -12560,10 +12552,6 @@ void Unit::SetInCombatState(bool PvP, Unit* enemy, uint32 duration)
 
         controlled->SetInCombatState(PvP, enemy);
     }
-#ifdef ELUNA
-    if (Player* player = this->ToPlayer())
-        sEluna->OnPlayerEnterCombat(player, enemy);
-#endif
 }
 
 void Unit::ClearInCombat()
@@ -12592,10 +12580,6 @@ void Unit::ClearInCombat()
             for (uint8 i = 0; i < MAX_RUNES; ++i)
                 player->SetGracePeriod(i, 0);
     }
-#ifdef ELUNA
-    if (Player* player = this->ToPlayer())
-        sEluna->OnPlayerLeaveCombat(player);
-#endif
 }
 
 void Unit::ClearInPetCombat()
@@ -16421,10 +16405,7 @@ void Unit::Kill(Unit* killer, Unit* victim, bool durabilityLoss, WeaponAttackTyp
     // Do KILL and KILLED procs. KILL proc is called only for the unit who landed the killing blow (and its owner - for pets and totems) regardless of who tapped the victim
     if (killer && (killer->IsPet() || killer->IsTotem()))
         if (Unit* owner = killer->GetOwner())
-        {
             owner->ProcDamageAndSpell(victim, PROC_FLAG_KILL, PROC_FLAG_NONE, PROC_EX_NONE, 0, attackType, spellProto);
-            sScriptMgr->OnCreatureKilledByPet( killer->GetCharmerOrOwnerPlayerOrPlayerItself(), victim->ToCreature());
-        }
 
     if (killer != victim && !victim->IsCritter())
         killer->ProcDamageAndSpell(victim, killer ? PROC_FLAG_KILL : 0, PROC_FLAG_KILLED, PROC_EX_NONE, 0, attackType, spellProto);

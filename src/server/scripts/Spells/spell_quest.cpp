@@ -19,7 +19,6 @@
 #include "MapManager.h"
 #include "CreatureTextMgr.h"
 #include "SpellAuraEffects.h"
-#include "CellImpl.h"
 
 // Ours
 class spell_q11065_wrangle_some_aether_rays : public SpellScriptLoader

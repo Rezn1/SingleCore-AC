@@ -74,7 +74,7 @@ void PlayerbotFactory::Prepare()
 		else if (level < 60)
 			itemQuality = urand(ITEM_QUALITY_UNCOMMON, ITEM_QUALITY_EPIC);
 		else
-			itemQuality = urand(ITEM_QUALITY_EPIC, ITEM_QUALITY_EPIC);
+			itemQuality = urand(ITEM_QUALITY_RARE, ITEM_QUALITY_EPIC);
 	}
 
 	if (bot->isDead())

@@ -163,11 +163,6 @@ enum DeprogrammingData
     POINT_DESPAWN           = 384721,
 };
 
-enum Actions
-{
-    ACTION_START_INTRO
-};
-
 #define NPC_DARNAVAN        RAID_MODE<uint32>(NPC_DARNAVAN_10, NPC_DARNAVAN_25, NPC_DARNAVAN_10, NPC_DARNAVAN_25)
 #define NPC_DARNAVAN_CREDIT RAID_MODE<uint32>(NPC_DARNAVAN_CREDIT_10, NPC_DARNAVAN_CREDIT_25, NPC_DARNAVAN_CREDIT_10, NPC_DARNAVAN_CREDIT_25)
 #define QUEST_DEPROGRAMMING RAID_MODE<uint32>(QUEST_DEPROGRAMMING_10, QUEST_DEPROGRAMMING_25, QUEST_DEPROGRAMMING_10, QUEST_DEPROGRAMMING_25)
@@ -516,12 +511,9 @@ class boss_lady_deathwhisper : public CreatureScript
                     Talk(SAY_KILL);
             }
 
-            void DoAction(int32 action)
+            void MoveInLineOfSight(Unit* who)
             {
-                if (action != ACTION_START_INTRO)
-                    return;
-
-                if (!_introDone)
+                if (!_introDone && me->IsWithinDistInMap(who, 110.0f))
                 {
                     _introDone = true;
                     Talk(SAY_INTRO_1);
@@ -533,6 +525,8 @@ class boss_lady_deathwhisper : public CreatureScript
                     events.ScheduleEvent(EVENT_INTRO_6, 48500, 0, PHASE_INTRO);
                     events.ScheduleEvent(EVENT_INTRO_7, 58000, 0, PHASE_INTRO);
                 }
+
+                BossAI::MoveInLineOfSight(who);
             }
 
             void SummonWaveP1()
@@ -1139,22 +1133,6 @@ public:
     }
 };
 
-class at_lady_deathwhisper_entrance : public AreaTriggerScript
-{
-public:
-    at_lady_deathwhisper_entrance() : AreaTriggerScript("at_lady_deathwhisper_entrance") { }
-
-    bool OnTrigger(Player* player, AreaTrigger const* /*areaTrigger*/)
-    {
-        if (InstanceScript* instance = player->GetInstanceScript())
-            if (instance->GetBossState(DATA_LADY_DEATHWHISPER) != DONE)
-                if (!player->IsGameMaster())
-                    if (Creature* ladyDeathwhisper = ObjectAccessor::GetCreature(*player, instance->GetData64(DATA_LADY_DEATHWHISPER)))
-                        ladyDeathwhisper->AI()->DoAction(ACTION_START_INTRO);
-        return true;
-    }
-};
-
 void AddSC_boss_lady_deathwhisper()
 {
     new boss_lady_deathwhisper();
@@ -1164,5 +1142,4 @@ void AddSC_boss_lady_deathwhisper()
     new npc_darnavan();
     new spell_deathwhisper_mana_barrier();
     new spell_cultist_dark_martyrdom();
-    new at_lady_deathwhisper_entrance();
 }

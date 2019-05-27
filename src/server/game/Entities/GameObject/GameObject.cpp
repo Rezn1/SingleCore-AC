@@ -25,10 +25,6 @@
 #include "Transport.h"
 #include "AccountMgr.h"
 
-#ifdef ELUNA
-#include "LuaEngine.h"
-#endif
-
 GameObject::GameObject() : WorldObject(false), MovableMapObject(),
     m_model(NULL), m_goValue(), m_AI(NULL)
 {
@@ -151,9 +147,6 @@ void GameObject::AddToWorld()
         EnableCollision(GetGoState() == GO_STATE_READY || IsTransport()); // pussywizard: this startOpen is unneeded here, collision depends entirely on GOState
 
         WorldObject::AddToWorld();
-#ifdef ELUNA
-        sEluna->OnAddToWorld(this);
-#endif
     }
 }
 
@@ -162,9 +155,6 @@ void GameObject::RemoveFromWorld()
     ///- Remove the gameobject from the accessor
     if (IsInWorld())
     {
-#ifdef ELUNA
-        sEluna->OnRemoveFromWorld(this);
-#endif
         if (m_zoneScript)
             m_zoneScript->OnGameObjectRemove(this);
 
@@ -338,10 +328,7 @@ bool GameObject::Create(uint32 guidlow, uint32 name_id, Map* map, uint32 phaseMa
 }
 
 void GameObject::Update(uint32 diff)
-{
-#ifdef ELUNA
-    sEluna->UpdateAI(this, diff);
-#endif
+{ 
     if (AI())
         AI()->UpdateAI(diff);
     else if (!AIM_Initialize())
@@ -1238,10 +1225,6 @@ void GameObject::Use(Unit* user)
 
     if (Player* playerUser = user->ToPlayer())
     {
-#ifdef ELUNA
-        if (sEluna->OnGossipHello(playerUser, this))
-            return;
-#endif
         if (sScriptMgr->OnGossipHello(playerUser, this))
             return;
 
@@ -2053,9 +2036,6 @@ void GameObject::SetDestructibleState(GameObjectDestructibleState state, Player*
             break;
         case GO_DESTRUCTIBLE_DAMAGED:
         {
-#ifdef ELUNA
-            sEluna->OnDamaged(this, eventInvoker);
-#endif
             EventInform(m_goInfo->building.damagedEvent);
             sScriptMgr->OnGameObjectDamaged(this, eventInvoker);
             if (BattlegroundMap* bgMap = GetMap()->ToBattlegroundMap())
@@ -2084,9 +2064,6 @@ void GameObject::SetDestructibleState(GameObjectDestructibleState state, Player*
         }
         case GO_DESTRUCTIBLE_DESTROYED:
         {
-#ifdef ELUNA
-            sEluna->OnDestroyed(this, eventInvoker);
-#endif
             sScriptMgr->OnGameObjectDestroyed(this, eventInvoker);
             EventInform(m_goInfo->building.destroyedEvent);
             if (BattlegroundMap* bgMap = GetMap()->ToBattlegroundMap())
@@ -2141,9 +2118,6 @@ void GameObject::SetDestructibleState(GameObjectDestructibleState state, Player*
 void GameObject::SetLootState(LootState state, Unit* unit)
 { 
     m_lootState = state;
-#ifdef ELUNA
-    sEluna->OnLootStateChanged(this, state);
-#endif
     AI()->OnStateChanged(state, unit);
     sScriptMgr->OnGameObjectLootStateChanged(this, state, unit);
     // pussywizard: lootState has nothing to do with collision, it depends entirely on GOState. Loot state is for timed close/open door and respawning, which then sets GOState
@@ -2166,9 +2140,6 @@ void GameObject::SetLootState(LootState state, Unit* unit)
 void GameObject::SetGoState(GOState state)
 { 
     SetByteValue(GAMEOBJECT_BYTES_1, 0, state);
-#ifdef ELUNA
-    sEluna->OnGameObjectStateChanged(this, state);
-#endif
     sScriptMgr->OnGameObjectStateChanged(this, state);
     if (m_model)
     {
