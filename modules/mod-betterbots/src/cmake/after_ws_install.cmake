@@ -1,2 +1,2 @@
 
-install(FILES "${CMAKE_SOURCE_DIR}/modules/skeleton-module/conf/my_custom.conf.dist" DESTINATION ${CONF_DIR})
+install(FILES "${CMAKE_SOURCE_DIR}/modules/mod-betterbots/conf/betterbots.conf.dist" DESTINATION ${CONF_DIR})

@@ -32,7 +32,7 @@ public:
     {
         if (!reload) {
             std::string conf_path = _CONF_DIR;
-            std::string cfg_file = conf_path + "/BetterBots.conf";
+            std::string cfg_file = conf_path + "/betterbots.conf";
             sConfigMgr->LoadMore(cfg_file.c_str());
         }
     }
