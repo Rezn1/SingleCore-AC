@@ -27,6 +27,7 @@ public:
 	bool notrandom;
 	//thesawolf - for ARAC support
 	bool aracgen;
+    bool onlyAlli;
     uint32 globalCoolDown, reactDelay, maxWaitForMove;
     float sightDistance, spellDistance, reactDistance, grindDistance, lootDistance, shootDistance,
         fleeDistance, tooCloseDistance, meleeDistance, followDistance, whisperDistance, contactDistance;

@@ -8,6 +8,9 @@ ConfVersion=2010102201
 # Enable or disable AI Playerbot
 AiPlayerbot.Enabled = 1
 
+# Only Alliance characters
+AiPlayerbot.onlyAlli = true
+
 # Unknown
 AiPlayerbot.RandomClassSpecProbability.0.0 = 33
 AiPlayerbot.RandomClassSpecProbability.0.1 = 33

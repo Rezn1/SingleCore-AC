@@ -29,6 +29,7 @@ EndScriptData */
 #include "TicketMgr.h"
 #include "WardenCheckMgr.h"
 #include "WaypointManager.h"
+#include "../../../modules/mod-spell-regulator/src/SpellRegulator.h"
 
 class reload_commandscript : public CommandScript
 {
@@ -137,6 +138,7 @@ public:
             { "spell_target_position",        SEC_ADMINISTRATOR, true,  &HandleReloadSpellTargetPositionCommand,        "" },
             { "spell_threats",                SEC_ADMINISTRATOR, true,  &HandleReloadSpellThreatsCommand,               "" },
             { "spell_group_stack_rules",      SEC_ADMINISTRATOR, true,  &HandleReloadSpellGroupStackRulesCommand,       "" },
+            { "spell_regulator",			  SEC_ADMINISTRATOR, true,  &HandleReloadSpellRegulator,                    "" },
             { "trinity_string",               SEC_ADMINISTRATOR, true,  &HandleReloadTrinityStringCommand,              "" },
             { "warden_action",                SEC_ADMINISTRATOR, true,  &HandleReloadWardenactionCommand,               "" },
             { "waypoint_scripts",             SEC_ADMINISTRATOR, true,  &HandleReloadWpScriptsCommand,                  "" },
@@ -185,6 +187,7 @@ public:
         HandleReloadAutobroadcastCommand(handler, "");
         HandleReloadBroadcastTextCommand(handler, "");
         HandleReloadBattlegroundTemplate(handler, "");
+        HandleReloadSpellRegulator(handler, "");
         return true;
     }
 
@@ -901,6 +904,14 @@ public:
         sLog->outString("Re-Loading Spell Group Stack Rules...");
         sSpellMgr->LoadSpellGroupStackRules();
         handler->SendGlobalGMSysMessage("DB table `spell_group_stack_rules` (spell stacking definitions) reloaded.");
+        return true;
+    }
+
+    static bool HandleReloadSpellRegulator(ChatHandler* handler, char const* /*args*/)
+    {
+        #define sSpellRegulator SpellRegulator::instance()
+        sSpellRegulator->LoadFromDB();
+        handler->SendGlobalGMSysMessage("DB table `spell_regulator` reloaded.");
         return true;
     }
 

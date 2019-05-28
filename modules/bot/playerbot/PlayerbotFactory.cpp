@@ -74,7 +74,7 @@ void PlayerbotFactory::Prepare()
 		else if (level < 60)
 			itemQuality = urand(ITEM_QUALITY_UNCOMMON, ITEM_QUALITY_EPIC);
 		else
-			itemQuality = urand(ITEM_QUALITY_RARE, ITEM_QUALITY_EPIC);
+			itemQuality = urand(ITEM_QUALITY_EPIC, ITEM_QUALITY_EPIC);
 	}
 
 	if (bot->isDead())
@@ -908,7 +908,7 @@ void PlayerbotFactory::EnchantItem(Item* item)
 	int32 itemLevel = proto->ItemLevel;
 
 	vector<uint32> ids;
-	for (int id = 0; id < sSpellStore.GetNumRows(); ++id)
+	for (unsigned int id = 0; id < sSpellStore.GetNumRows(); ++id)
 	{
 		SpellInfo const *entry = sSpellMgr->GetSpellInfo(id);
 		if (!entry)
@@ -1815,7 +1815,7 @@ void PlayerbotFactory::InitTalents(uint32 specNo)
 			int index = urand(0, spells.size() - 1);
 			TalentEntry const *talentInfo = spells[index];
 			int maxRank = 0;
-			for (int rank = 0; rank < min((uint32)MAX_TALENT_RANK, bot->GetFreeTalentPoints()); ++rank)
+			for (unsigned int rank = 0; rank < min((uint32)MAX_TALENT_RANK, bot->GetFreeTalentPoints()); ++rank)
 			{
 				uint32 spellId = talentInfo->RankID[rank];
 				if (!spellId)

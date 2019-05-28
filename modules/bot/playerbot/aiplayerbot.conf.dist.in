@@ -33,6 +33,9 @@ AiPlayerbot.randomBotInitQuest = 0
 # All race, all class mode for bots (need the client mod too)
 AiPlayerbot.ARAC = 0
 
+# Only Alliance characters
+AiPlayerbot.onlyAlli = true
+
 # Accounts to create for random bots
 AiPlayerbot.RandomBotAccountPrefix = rndbot
 AiPlayerbot.RandomBotAccountCount = 50

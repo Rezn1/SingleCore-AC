@@ -73,4 +73,10 @@ local.properties
 #  !modules/yourmodule
 #
 # ==================
-
+.vs/
+.vs/VSWorkspaceState.json
+.vs/slnx.sqlite
+.vs/SingleCore-AC/v15/ipch/a024b4979250eba0.ipch
+.vs/SingleCore-AC/v15/ipch/53c39543d2c9631b.ipch
+.vs/SingleCore-AC/v15/Browse.VC.db
+.vs/SingleCore-AC/v15/.suo

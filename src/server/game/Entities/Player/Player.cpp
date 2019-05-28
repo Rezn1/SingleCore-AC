@@ -5920,7 +5920,7 @@ void Player::RepopAtGraveyard()
                 sConfigMgr->LoadMore(cfg_file.c_str());
                 if (sConfigMgr->GetBoolDefault("Hardcore.Mode.Enable", true))
                 {
-                    TeleportTo(1, 16229.599609f, 16267.900391, 14.0f, 0.0f); // Orientation is initially in degrees
+                    TeleportTo(1.0f, 16229.599609f, 16267.900391f, 14.0f, 0.0f); // Orientation is initially in degrees
                 }
                 else
                 {
@@ -5944,7 +5944,7 @@ void Player::RepopAtGraveyard()
             sConfigMgr->LoadMore(cfg_file.c_str());
             if (sConfigMgr->GetBoolDefault("Hardcore.Mode.Enable", true))
             {
-                TeleportTo(1, 16229.599609f, 16267.900391, 14.0f, 0.0f); // Orientation is initially in degrees
+                TeleportTo(1.0f, 16229.599609f, 16267.900391f, 14.0f, 0.0f); // Orientation is initially in degrees
             }
             else
             {
