@@ -908,7 +908,7 @@ void PlayerbotFactory::EnchantItem(Item* item)
 	int32 itemLevel = proto->ItemLevel;
 
 	vector<uint32> ids;
-	for (unsigned int id = 0; id < sSpellStore.GetNumRows(); ++id)
+	for (int id = 0; id < sSpellStore.GetNumRows(); ++id)
 	{
 		SpellInfo const *entry = sSpellMgr->GetSpellInfo(id);
 		if (!entry)
@@ -1815,7 +1815,7 @@ void PlayerbotFactory::InitTalents(uint32 specNo)
 			int index = urand(0, spells.size() - 1);
 			TalentEntry const *talentInfo = spells[index];
 			int maxRank = 0;
-			for (unsigned int rank = 0; rank < min((uint32)MAX_TALENT_RANK, bot->GetFreeTalentPoints()); ++rank)
+			for (int rank = 0; rank < min((uint32)MAX_TALENT_RANK, bot->GetFreeTalentPoints()); ++rank)
 			{
 				uint32 spellId = talentInfo->RankID[rank];
 				if (!spellId)
