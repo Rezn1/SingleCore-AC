@@ -19,7 +19,7 @@ public:
     // StygianTheBest - v2017.07.29
     void OnLogin(Player* player) {
         if (sConfigMgr->GetBoolDefault("RandomEnchants.Announce", true))
-            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00RandomEnchants |rmodule.");
+            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00RandomEnchants |rmodule. Edited by GvR Mr Mister");
     }
 
     void OnLootItem(Player* player, Item* item, uint32 count, uint64 /*lootguid*/) override
@@ -46,18 +46,23 @@ public:
         int slotRand[3] = { -1, -1, -1 };
         uint32 slotEnch[3] = { 0, 1, 5 };
         double roll1 = rand_chance();
-        if (roll1 >= 70.0)
+        if (roll1 >= 10.0)
             slotRand[0] = getRandEnchantment(item);
         if (slotRand[0] != -1)
         {
             double roll2 = rand_chance();
-            if (roll2 >= 65.0)
+            if (roll2 >= 20.0)
                 slotRand[1] = getRandEnchantment(item);
             if (slotRand[1] != -1)
             {
                 double roll3 = rand_chance();
-                if (roll3 >= 60.0)
+                if (roll3 >= 30.0)
                     slotRand[2] = getRandEnchantment(item);
+                if (slotRand[1] != -1) {
+                    double roll4 = rand_chance();
+                    if (roll4 >= 40.0)
+                        slotRand[3] = getRandEnchantment(item);
+                }
             }
         }
         for (int i = 0; i < 2; i++)
